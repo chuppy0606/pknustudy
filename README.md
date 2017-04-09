@@ -28,7 +28,7 @@ app.get('/get_app',function(req,res){
 ```
 > post방식, 웹 사이트 주소 부분에 ?데이터값 이 없는 것을 확인
 > localhost:3000/POST_TEST.html로 들어가서 데이터를 입력 후 확인
-> post방식을 쓰기 위해서 bodyParser를 사용
+> post방식을 쓰기 위해서 *bodyParser*를 사용
 ```
 app.post('/post_app',function(req,res){
   res.send(req.body.num);
@@ -44,6 +44,6 @@ app.listen(3000,function(){
 참고자료
 ========
 Callback : https://webapplog.com/node-patterns-from-callbacks-to-observer <br />
-Es6 : http://hacks.mozilla.or.kr/2016/07/es6-in-depth-the-future ***
+Es6 : http://hacks.mozilla.or.kr/2016/07/es6-in-depth-the-future <br />
 Cmder : http://programmingsummaries.tistory.com/352
 
