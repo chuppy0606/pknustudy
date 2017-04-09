@@ -41,4 +41,9 @@ app.listen(3000,function(){
 });
 ```
 
+참고자료
+========
+Callback : https://webapplog.com/node-patterns-from-callbacks-to-observer <br />
+Es6 : http://hacks.mozilla.or.kr/2016/07/es6-in-depth-the-future ***
+Cmder : http://programmingsummaries.tistory.com/352
 
