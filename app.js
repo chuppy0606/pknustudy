@@ -1,22 +1,47 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
+var user = [
+  {
+    username: 'egoing',
+    password:'111'
+    // password:'698d51a19d8a121ce581499d7b701668'
+  }
+]
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
 app.get('/',function(req,res){
   res.send('Hello,World!');
 });
-//get방식, 웹 사이트 주소 부분에 ?데이터값 이 들어가 있는 것을 확인
-//localhost:3000/GET_TEST.html로 들어가서 데이터를 입력 후 확인
-app.get('/get_app',function(req,res){
-  res.send(req.query.num);
+
+app.post('/auth/register', function(req,res){
+  var user = {
+    username:'egoing',
+    password:'111'
+  };
+
+  var uname = req.body.username
+  var pwd = req.body.password
+
+  if(uname === user.username && pwd === user.password){
+    res.send('Hello master');
+  } else {
+    res.send('Who are you?');
+  }
 });
- //post방식, 웹 사이트 주소 부분에 ?데이터값 이 없는 것을 확인
- //localhost:3000/POST_TEST.html로 들어가서 데이터를 입력 후 확인
-//post방식을 쓰기 위해서 bodyParser를 사용
-app.post('/post_app',function(req,res){
-  res.send(req.body.num);
-});
+
 app.listen(3000,function(){
   console.log('Connected prot 3000!!!');
 });
