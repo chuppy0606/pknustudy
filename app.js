@@ -5,7 +5,7 @@ var session = require('express-session');
 
 app.locals.pretty=true;
 app.set('view engine', 'jade');
-app.set('vies', './views');
+app.set('views', './views');
 
 var OrientDB = require('orientjs');
 var server = OrientDB({
@@ -23,13 +23,13 @@ app.use(express.static('public'));
 
 
 app.get('/template',function(req,res){
-  res.render('index', {time:Date()});
+  res.render('index', {time:Date});
 });
 
 app.get(['/topic', '/topic/:id'], function(req, res) {
   var sql = "SELECT FROM topic";
-  db.query(sql).then(function(results){
-    res.send(results);
+  db.query(sql).then(function(topics){
+    res.render('index', {topics:topics});
   });
 });
 
