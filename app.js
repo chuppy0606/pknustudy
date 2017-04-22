@@ -17,22 +17,26 @@ password: '8047'
 
 var db = server.use('o2');
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
 
 app.get('/template',function(req,res){
   res.render('index', {time:Date});
 });
 
-app.get(['/topic', '/topic/:id'], function(req, res) {
-  var sql = "SELECT FROM topic";
+app.get(['/topic', '/topic/:id'], function(req, res){
+  var sql = 'SELECT FROM topic';
   db.query(sql).then(function(topics){
-    res.render('index', {topics:topics});
+    // console.log(topics[1]);
+    var sql = 'SELECT FROM topic WHERE @rid=:rid';
+    var id = req.params.id;
+    db.query(sql, {params:{rid:id}}).then(function(topic){
+      console.log(topic);
+      res.render('index', {topics:topics, topic:topic[0]});
+    });
   });
-});
+})
 
 app.listen(3000,function(){
-  console.log('Connected prot 3000!!!');
+  console.log('Connected port 3000!!!');
 });

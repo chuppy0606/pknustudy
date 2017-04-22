@@ -7,4 +7,9 @@ html
         ul
             each topic in topics
                 li
-                a(href='/topic'+topic['@rid'])= topic.title
+                    - rid = encodeURIComponent(topic['@rid'])
+                    a(href='/topic/'+rid)= topic.title
+
+        artcle
+            h2= topic.title
+            = topic.description
