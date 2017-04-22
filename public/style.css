@@ -1,0 +1,12 @@
+.submit-button {
+    display:flex;
+    justify-content:center;
+}
+
+.container {
+    padding: 70px;
+}
+
+.facebook {
+    margin-top: 5px;
+}
